@@ -74,7 +74,7 @@ function Form({ onAddItems }) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button onClick={handleSubmit}>Add</button>
+        <button onClick={handleSubmit}>Add+</button>
       </div>
     </form>
   );
