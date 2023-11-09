@@ -50,31 +50,32 @@ function Form({ onAddItems }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!description) return;
-    console.log(e);
     onAddItems(newItem);
     setDescription("");
     setQuantity(1);
   }
   return (
     <form className="add-form" onSubmit={handleSubmit}>
-      <h3>what do you want to add---</h3>
-      <select
-        value={quantity}
-        onChange={(e) => setQuantity(Number(e.target.value))}
-      >
-        {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
-          <option key={num} value={num}>
-            {num}
-          </option>
-        ))}
-      </select>
-      <input
-        type="text"
-        placeholder="Enter item"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <button onClick={handleSubmit}>Add</button>
+      <h3>What do you want to add</h3>
+      <div className="form-inner">
+        <select
+          value={quantity}
+          onChange={(e) => setQuantity(Number(e.target.value))}
+        >
+          {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
+            <option key={num} value={num}>
+              {num}
+            </option>
+          ))}
+        </select>
+        <input
+          type="text"
+          placeholder="Enter item"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <button onClick={handleSubmit}>Add</button>
+      </div>
     </form>
   );
 }
@@ -133,7 +134,7 @@ function Item({ item, onDelteItem, onToggleItem }) {
 }
 
 function Stats({ items }) {
-  if (!items.length) return <p className="stats"> Add some items TODO</p>;
+  if (!items.length) return <p className="stats"> Add some items ToDo</p>;
   const numItems = items.length;
   const numPacked = items.filter((item) => item.packed).length;
   const percentage = Math.round((numPacked / numItems) * 100);
@@ -142,7 +143,7 @@ function Stats({ items }) {
       <em>
         {percentage === 100
           ? "Todo Completed"
-          : `You have ${numItems} items in list, and you already packed {numPacked} (${percentage}%)`}
+          : `You have ${numItems} items in list, and you already packed ${numPacked} (${percentage}%)`}
       </em>
     </footer>
   );
